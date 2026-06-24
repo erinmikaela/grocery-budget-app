@@ -57,7 +57,12 @@ export default function ScannerScreen() {
   return (
     <View style={styles.container}>
       <CameraView ref={cameraRef} style={styles.camera} facing="back" />
-      <Pressable style={styles.primaryButton} onPress={handleCapture} disabled={isCapturing}>
+      <Pressable
+        style={styles.primaryButton}
+        onPress={handleCapture}
+        disabled={isCapturing}
+        accessibilityRole="button"
+        accessibilityLabel="Capture and scan receipt image">
         <Text style={styles.buttonLabel}>{isCapturing ? 'Scanning…' : 'Snap & Scan Receipt'}</Text>
       </Pressable>
       {message ? <Text style={styles.helperText}>{message}</Text> : null}

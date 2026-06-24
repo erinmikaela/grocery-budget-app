@@ -87,6 +87,7 @@ export default function GroceryPlannerScreen() {
               editable={false}
               style={styles.quantityInput}
               value={String(quantities[item.id])}
+              accessibilityRole="text"
               accessibilityLabel={`${item.name} quantity`}
             />
             <Pressable style={styles.quantityButton} onPress={() => updateQuantity(item.id, 1)}>
@@ -96,7 +97,12 @@ export default function GroceryPlannerScreen() {
         </View>
       ))}
 
-      <Pressable style={styles.estimateButton} onPress={handleEstimate} disabled={isLoading || selectedItems.length === 0}>
+      <Pressable
+        style={styles.estimateButton}
+        onPress={handleEstimate}
+        disabled={isLoading || selectedItems.length === 0}
+        accessibilityRole="button"
+        accessibilityLabel="Estimate total grocery cost">
         <Text style={styles.estimateText}>Estimate Total</Text>
       </Pressable>
 
