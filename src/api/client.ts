@@ -37,13 +37,25 @@ export type ScanReceiptResponse = {
   status: string;
 };
 
+type ReceiptUploadFile = {
+  uri: string;
+  name: string;
+  type: string;
+};
+
 export async function scanReceipt(imageUri: string): Promise<ScanReceiptResponse> {
+  if (!imageUri) {
+    throw new Error('A receipt image is required.');
+  }
+
   const formData = new FormData();
-  formData.append('receipt', {
+  const receiptUpload: ReceiptUploadFile = {
     uri: imageUri,
     name: 'receipt.jpg',
     type: 'image/jpeg',
-  } as unknown as Blob);
+  };
+
+  formData.append('receipt', receiptUpload as never);
 
   const response = await fetch(`${API_BASE_URL}/api/receipts/scan`, {
     method: 'POST',

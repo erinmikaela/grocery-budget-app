@@ -18,8 +18,11 @@ const ITEMS: GroceryItem[] = [
 
 export default function GroceryPlannerScreen() {
   const [selectedStore, setSelectedStore] = useState(STORES[0]);
-  const [quantities, setQuantities] = useState<Record<string, number>>(
-    ITEMS.reduce((acc, item) => ({ ...acc, [item.id]: 0 }), {}),
+  const [quantities, setQuantities] = useState<Record<string, number>>(() =>
+    ITEMS.reduce<Record<string, number>>((acc, item) => {
+      acc[item.id] = 0;
+      return acc;
+    }, {}),
   );
   const [isLoading, setIsLoading] = useState(false);
   const [subtotal, setSubtotal] = useState<number | null>(null);
