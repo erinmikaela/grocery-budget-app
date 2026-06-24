@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { estimateTotal } from '@/src/api/client';
@@ -26,10 +26,10 @@ export default function GroceryPlannerScreen() {
   const [estimatedTotal, setEstimatedTotal] = useState<number | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const selectedItems = useMemo(
-    () => ITEMS.filter((item) => quantities[item.id] > 0).map((item) => ({ id: item.id, quantity: quantities[item.id] })),
-    [quantities],
-  );
+  const selectedItems = ITEMS.filter((item) => quantities[item.id] > 0).map((item) => ({
+    id: item.id,
+    quantity: quantities[item.id],
+  }));
 
   const updateQuantity = (itemId: string, delta: number) => {
     setQuantities((current) => ({
