@@ -32,7 +32,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow Grocery Budget App to capture grocery receipts for scan processing."
+          "cameraPermission": "Allow Grocery Budget App to capture your grocery receipts for scanning."
         }
       ],
       [
